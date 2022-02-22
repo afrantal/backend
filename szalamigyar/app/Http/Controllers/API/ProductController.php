@@ -42,12 +42,13 @@ class ProductController extends BaseController
         if (is_null($task)) {
             return $this->handleError('Product not found!');
         }
-        return $this->handleResponse(new ProductResource($task), 'Product retrieved.');
+        return $this->handleResponse(new ProductResource($task), 'Product has retrieved.');
     }
     
 
-    public function update(Request $request, Product $task)
+    public function update(Request $request, $id)
     {
+        $task = Product::find($id);
         $input = $request->all();
 
         $validator = Validator::make($input, [
@@ -70,14 +71,12 @@ class ProductController extends BaseController
         return $this->handleResponse(new ProductResource($task), 'Product successfully updated!');
     }
    
-    public function destroy(Product $task)
+    public function destroy($id) //Product $task
     {
+        $task = Product::find($id);
         $task->delete();
         return $this->handleResponse([], 'Product deleted!');
     }
-
-
-
 
 
 }
