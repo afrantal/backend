@@ -25,6 +25,8 @@ Route::post('register', [AuthController::class, 'register']);
 Route::post('products', [ProductController::class, 'store']);
 Route::get('products', [ProductController::class, 'index']);
 Route::get('products/{id}', [ProductController::class, 'show']);
+Route::get( "/products/search/{name}", [ ProductController::class, "search" ]);
+Route::get( "/products/material/{mat}", [ ProductController::class, "select" ]);
 Route::put('products/{id}', [ProductController::class, 'update']);
 Route::delete('products/{id}', [ProductController::class, 'destroy']);
 

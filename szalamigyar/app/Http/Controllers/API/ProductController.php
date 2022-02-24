@@ -18,6 +18,18 @@ class ProductController extends BaseController
         return $this->handleResponse(ProductResource::collection($tasks), 'Products have been retrieved!');
     }
 
+
+    public function search( $name )
+    {
+        return Product::where( "product_name", "like", "%".$name."%" )->get();
+    }
+
+
+    public function select( $mat )
+    {
+        return Product::where( "material", "=",  $mat )->get();
+    }
+
     
     public function store(Request $request)
     {
